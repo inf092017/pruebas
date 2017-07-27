@@ -1,0 +1,93 @@
+Usuario:PruebasIntranet
+Password:hxU+y+ZCK9cqELC8FyP7bA==
+Corporativo:UPC Pruebas
+
+NombreWebService RegistrarVacaciones
+'<Parametros Usuario="" Password="" Corporativo=""> 
+	<Vacacion RFCEmpleado = "" FechaPresentacion="" RFCJefe="">
+		<Periodos>
+			<Periodo PeriodoVacacional="" DiasGozar="" FechaInicial="" FechaFinal="" />
+		</Periodos>
+	</Vacacion>
+<Parametros>
+'
+Validar caracteres especiales en rfc
+Validar RFC empleado
+Validar RFC Jefe
+Validar que la fecha de presentacion sea mayor o igual a la ultima fechafinal del los periodos indicados
+Validar que la fecha inicial sea menor o igual de cada periodo
+
+'<Response Success="true | false">
+	<Mensaje Tipo="error|errorperiodo|mensaje" mensaje="" Periodo="" />
+</Response>'
+3 dias
+
+
+NombreWebService RegistrarAusentismos
+'<Parametros Usuario="" Password="" Corporativo=""> 
+	<Ausentismo RFCEmpleado = "" DiasAusentimo="" FechaInicial="" FechaFinal="" FechaPresentacion="" Tipo="" ConCompensacion="" TipoAusentismo="" Motivo="" Observaciones="" Tiempo="" TipoTiempo="" HoraInicial="" HoralFinal="" RFCJefe="" FechaCompensacion="" HoraInicialCompensacion="" FechaFinalCompensacion="" >
+	</Ausentismo>
+<Parametros>
+
+Valores permitidos para el campo Tipo
+1 = Por Dia
+2 = Por Horas /Minutos
+
+Valores permitidos para el campo TipoAusentismo
+1 = Permiso sin goce
+2 = Falta injustificada
+3 = Falta Justificada
+4 = Permiso con goce
+
+Valores Permitidos para el campo Motivo
+** PERMISO CON GOCE DE SUELDO **
+1 = Nacimiento de un Hijo
+2 = Matrimonio
+3 = Graduación de Estudios
+4 = Fallecimiento de un familiar Directo
+5 = Valoración del Mérito. Limitado a 2días por Año.
+
+** PERMISO SIN GOCE DE SUELDO, Falta injustificada, Falta Justificada
+6= Problemas de Salud.
+7= Tramites Escolares
+8= Asuntos Familiares
+9= Otros
+
+
+Valores permitidos para el campo TipoTiempo. Este campo es obligatorio cuando el valor del campo Tipo es "2"
+1 = Minutos
+2 = Horas
+
+Los campos TipoTiempo, Tiempo, HoraInicial, HoraFinal son obligatorios cuando el valor del campo tipo es "2"
+
+Valores permitidos para el campo ConCompensacion
+n0 = Sin Compensacion
+1 = Con Compensacio
+
+Los campos FechaCompensacion, HoraInicialCompensacion, HoraInicialCompensacion son obligatorios cuando el valor del campo Tipo = 2 y el campo tipoausentismo = 4 y el campo ConCompensacion=1
+
+
+'
+1 - Validar caracteres especiales en RFC del empleado como del jefe
+1 - Validar RFC empleado
+1 - Validar RFC Jefe
+1 - Validar fecha inicial menor o igual a la fecha final
+1 - Validar que la fecha presentacion sea mayor o igual a la fecha final
+1 - Validar que los dias de ausentismos sean menor o igual a la diferencia que existe entre la fecha final y la fecha inicial
+1 - Validar que el valor del campo tipo este dentro de los permitidos
+1 - Validar que el valor del campo tipo ausentismo este dentro de los permitidos
+1 - Validar que el motivo del ausentismo sea de acuerdo al tipo de ausentismo seleccionado
+ - Validar que cuando el valor del campo tipo sea en horas el valor del campo tiempo sea mayor a cero
+ - Validar que cuando el valor del campo tipo sea en horas el valor del campo tipotiempo se encuentre dentro de los permitidos
+ - Validar que cuando el valor del campo tipo sea en horas la hora inicial sea menor a la hora final
+
+'<Response Success="true | false">
+	<Mensaje Tipo="mensaje|error" Mensaje=""/>
+</Response>'
+
+3 dias
+
+xml para envio de empleados
+<Empleado ID_Empleado="" RFCEmpleado="" Nombres="" Apellidos="" CorreoElectronico="" Sucursal="" Division="" Departamento="" RFCJefeInmediato="" RFCJefeInmediatoJerarquico="" NivelJerarquico="" Puesto="" Extension="" Celular="" Nextel="" FechaIngreso="" FechaNacimiento="" Fotografía="" Genero="" />
+3 dias
+
